@@ -1,0 +1,28 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(tidyverse)
+data <- read_rds("Data/clean/apprehensions_2007_2020.rds")
+```
+
+# Migrants (USBC)
+
+```{r}
+data
+```
+
+## Nicaragua
+
+```{r, echo = FALSE}
+knitr::include_graphics("Figs/encounters.png")
+knitr::include_graphics("Figs/encounters_yearly.png")
+```
