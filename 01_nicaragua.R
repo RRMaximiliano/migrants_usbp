@@ -7,7 +7,7 @@ library(hrbrthemes)
 library(ggtext)
 library(here)
 
-nicaragua <- read_xlsx(here("Data", "excel", "nic2019-2022.xlsx")) %>% 
+nicaragua <- read_xlsx(here("Data", "excel", "nic2019-20220418.xlsx")) %>% 
   janitor::clean_names() %>% 
   rename(
     year = 1
@@ -24,7 +24,7 @@ nicaragua <- nicaragua %>%
   mutate(
     year = str_remove_all(year, "\\(FYTD\\)") %>% str_trim(.) %>% as.numeric(.)
   ) %>% 
-  select(-total) %>% 
+  # select(-total) %>% 
   pivot_longer(
     -year,
     names_to = "month",
@@ -32,9 +32,11 @@ nicaragua <- nicaragua %>%
   ) %>% 
   group_by(year) %>% 
   mutate(
-    month = fct_relevel(month, 
-                        "oct", "nov", "dec", "jan", "feb", "mar", 
-                        "apr", "may", "jun", "jul", "aug", "sep"),
+    month = fct_relevel(
+      month, 
+      "oct", "nov", "dec", "jan", "feb", "mar", 
+      "apr", "may", "jun", "jul", "aug", "sep"
+    ),
     year = as_factor(year),
     cgroup = ifelse(year == 2022, TRUE, FALSE)
   )
@@ -174,20 +176,32 @@ nicaragua_2007_2021 %>%
   geom_col(
     color = "black",
   ) +
+  geom_text(
+    aes(
+      label = scales::comma(migrants), 
+      x = year,
+      y = migrants
+    ),
+    family = jetbrains, 
+    vjust = -1,
+    inherit.aes = FALSE, 
+    data = filter(nicaragua_2007_2021, year %in% c(2021,2022))
+  ) +
   coord_cartesian(clip = "off", expand = FALSE) + 
-  scale_y_continuous(label = scales::comma) +
+  scale_y_continuous(label = scales::comma, limits = c(0,80000)) +
   scale_fill_manual(values = c("#666666", "#254b84")) +
   labs(
     x = "Fiscal Year",
     y = "Encounters",
     title = "Nationwide Encounters of Nicaraguans by Year",
-    subtitle = "For year <span style = 'color:#254b84;'>**2022**</span>, data as of January 2022.",
+    subtitle = "For year <span style = 'color:#254b84;'>**2022**</span>, data as of March 2022. Fiscal year runs from October of one calendar year through<br>September 30 of the next.",
     caption = "**Source**: U.S. Customs and Border Protection (CBP) · **Plot**: @rrmaximiliano",
   ) +
   theme_ipsum_es() +
   theme(
     legend.position = "none",
-    plot.subtitle = element_markdown(size = rel(1.3), margin = margin(0,0,30,0)),
+    plot.title = element_markdown(size = rel(2)),
+    plot.subtitle = element_markdown(size = rel(1.5), margin = margin(0,0,30,0)),
     plot.caption = element_markdown(size = rel(1.2), hjust = 0),
     axis.line.x = element_line(color = "black"),
     axis.line.y = element_blank(),
