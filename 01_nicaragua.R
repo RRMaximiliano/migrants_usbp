@@ -188,13 +188,13 @@ nicaragua_2007_2021 %>%
     data = filter(nicaragua_2007_2021, year %in% c(2021,2022))
   ) +
   coord_cartesian(clip = "off", expand = FALSE) + 
-  scale_y_continuous(label = scales::comma, limits = c(0,80000)) +
+  scale_y_continuous(label = scales::comma, limits = c(0,130000)) +
   scale_fill_manual(values = c("#666666", "#254b84")) +
   labs(
     x = "Fiscal Year",
     y = "Encounters",
     title = "Nationwide Encounters of Nicaraguans by Year",
-    subtitle = "For year <span style = 'color:#254b84;'>**2022**</span>, data as of March 2022. Fiscal year runs from October of one calendar year through<br>September 30 of the next.",
+    subtitle = "For year <span style = 'color:#254b84;'>**2022**</span>, data as of June 2022. Fiscal year runs from October of one calendar year through September 30 of the next.",
     caption = "**Source**: U.S. Customs and Border Protection (CBP) · **Plot**: @rrmaximiliano",
   ) +
   theme_ipsum_es() +

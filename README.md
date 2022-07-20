@@ -5,7 +5,7 @@
 
 ``` r
 data
-#> # A tibble: 41,400 x 5
+#> # A tibble: 41,400 × 5
 #>     year country     region    border migrants
 #>    <dbl> <chr>       <chr>     <chr>     <dbl>
 #>  1  2007 Afghanistan Southwest BBT          NA
@@ -18,7 +18,7 @@ data
 #>  8  2007 Afghanistan Southwest TCA          NA
 #>  9  2007 Afghanistan Southwest YUM           1
 #> 10  2007 Afghanistan Northern  BLW          NA
-#> # ... with 41,390 more rows
+#> # … with 41,390 more rows
 ```
 
 ## Nicaragua
