@@ -19,6 +19,7 @@ data
 #>  9  2007 Afghanistan Southwest YUM           1
 #> 10  2007 Afghanistan Northern  BLW          NA
 #> # … with 41,390 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 ## Nicaragua
